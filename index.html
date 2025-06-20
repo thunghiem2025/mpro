@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSB M-Pro</title>
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .banner {
+            background: linear-gradient(to right, #ff0000, #ff7518);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .header {
+            color: #ff7518;
+            font-weight: bold;
+        }
+        .content {
+            color: #333333;
+        }
+        .highlight {
+            color: #ffffff;
+            background-color: #ff7518;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.25rem;
+        }
+        .section {
+            padding: 2rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+		
+		.container h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ff6600;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            color: #333;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6600, #ff9900);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff6600;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(255,0,0,0.5), rgba(255,165,0,0.3)), url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 55vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6600, #ff9900);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,102,0,0.4);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: white;
+            color: #333;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            border: 2px solid #ff6600;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            box-shadow: 0 5px 20px rgba(255,102,0,0.1);
+        }
+
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.4s; }
+        .feature-card:nth-child(4) { animation-delay: 0.6s; }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6600, #ff9900);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .benefits h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-item h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .benefit-item ul {
+            list-style: none;
+        }
+
+        .benefit-item li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .benefit-item li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ff6600;
+            font-weight: bold;
+        }
+
+        /* Packages Section */
+        .packages {
+            padding: 100px 0;
+            background: #f8f9fa;
+            color: white;
+        }
+
+        .packages h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .package-card {
+            background: white;
+            color: #333;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 2px solid #ff6600;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255,102,0,0.3);
+        }
+
+        .package-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ff6600;
+        }
+
+        .package-card .price {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .process h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff6600, #ff9900);
+            color: white;
+            border-radius: 50%;
+            line-height: 60px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .step h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .contact h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border: 2px solid #ff6600;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(255,102,0,0.1);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ff6600;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .features-grid,
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                 <div class="logo"><img src="LogoMSB.png" alt="MSB Logo" class="logo-img"></div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#benefits">Lợi ích</a></li>
+                        <li><a href="#packages">Gói dịch vụ</a></li>
+						<li><a href="#process">Quy trình</a></li>
+                        <li><a href="#contact">Liên hệ</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Gói Tài Khoản M-Pro</h1>
+                <p>Giải pháp tài chính toàn diện cho cá nhân và hộ kinh doanh</p>
+                <a href="#contact" class="cta-button">Đăng ký ngay</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lợi ích nổi bật -->
+    <div class="section bg-white">
+        <h2 class="header text-3xl mb-6">1. Lợi ích nổi bật</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="card">
+                <h3 class="header text-xl mb-2">Miễn phí trọn đời</h3>
+                <p class="content">Miễn phí duy trì tài khoản, phát hành thẻ nội địa, rút tiền tại ATM nội ngoại mạng, chuyển khoản Napas 24/7.</p>
+            </div>
+            <div class="card">
+                <h3 class="header text-xl mb-2">Cashback hấp dẫn</h3>
+                <p class="content">Hoàn tiền đến <span class="highlight">3,6 triệu đồng/năm</span> (1% chi tiêu, tối đa 200k/tháng; 5% thanh toán hóa đơn, tối đa 100k/tháng).</p>
+            </div>
+            <div class="card">
+                <h3 class="header text-xl mb-2">Khuyến mãi cho hộ kinh doanh</h3>
+                <p class="content">Tặng cộng dồn đến <span class="highlight">300k/3 tháng đầu</span> với các gói "Lộc mở hàng", "Lộc gắn kết", "Lộc sinh lời".</p>
+            </div>
+            <div class="card">
+                <h3 class="header text-xl mb-2">Hạn mức giao dịch cao</h3>
+                <p class="content">Chuyển khoản tối đa <span class="highlight">22 tỷ đồng/ngày</span>.</p>
+            </div>
+            <div class="card">
+                <h3 class="header text-xl mb-2">Quản lý chuyên nghiệp</h3>
+                <p class="content">Tách giao dịch tự động lên đến <span class="highlight">10 tỷ đồng</span> 24/7, chia sẻ biến động số dư, theo dõi từ xa.</p>
+            </div>
+            <div class="card">
+                <h3 class="header text-xl mb-2">Số tài khoản cá nhân hóa</h3>
+                <p class="content">Chọn số theo điện thoại, phong thủy, hoặc M Nick để tăng nhận diện thương hiệu.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Đặc điểm sản phẩm -->
+    <div class="section bg-gray-50">
+        <h2 class="header text-3xl mb-6">2. Đặc điểm sản phẩm</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="card">
+                <h3 class="header text-xl mb-2">Mở tài khoản online</h3>
+                <p class="content">Mở tài khoản 100% online trong <span class="highlight">1 phút</span> qua eKYC.</p>
+            </div>
+            <div class="card">
+                <h3 class="header text-xl mb-2">Gói thanh toán toàn diện</h3>
+                <p class="content">Thẻ ghi nợ nội địa, Internet/Mobile Banking, SMS Banking với phí giao dịch gần bằng <span class="highlight">0 đồng</span>.</p>
+            </div>
+            <div class="card">
+                <h3 class="header text-xl mb-2">Tiết kiệm linh hoạt</h3>
+                <p class="content">Gửi tiết kiệm trong tài khoản định danh, lãi suất ưu đãi, cộng thêm <span class="highlight">0.5–0.9%</span> khi mở online.</p>
+            </div>
+            <div class="card">
+                <h3 class="header text-xl mb-2">Hỗ trợ kinh doanh</h3>
+                <p class="content">Phần mềm quản lý doanh thu miễn phí, giải pháp tối ưu cho chủ hộ kinh doanh.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Điều kiện & hồ sơ -->
+    <div class="section bg-white">
+        <h2 class="header text-3xl mb-6">3. Điều kiện & hồ sơ khách hàng</h2>
+        <div class="card">
+            <h3 class="header text-xl mb-2">Đối tượng</h3>
+            <p class="content">Cá nhân, hộ kinh doanh, doanh nghiệp nhỏ, chủ shop cần tài khoản kinh doanh.</p>
+            <h3 class="header text-xl mt-4 mb-2">Hồ sơ cần có</h3>
+            <p class="content">CMND/CCCD; người kinh doanh có thể cần đăng ký kinh doanh, sao kê tài khoản, hóa đơn, hợp đồng đơn hàng.</p>
+        </div>
+    </div>
+
+    <!-- Quy trình đăng ký -->
+    <div class="section bg-gray-50">
+        <h2 class="header text-3xl mb-6">4. Quy trình đăng ký</h2>
+        <div class="card">
+            <ol class="content list-decimal pl-6">
+                <li>Mở tài khoản online 100% qua app MSB mBank eKYC trong <span class="highlight">1 phút</span>.</li>
+                <li>Phát sinh giao dịch để nhận ưu đãi: tặng tiền thưởng theo các mốc “Lộc” trong 3 tháng đầu.</li>
+                <li>Sử dụng tính năng thanh toán, quản lý doanh thu: chia sẻ biến động số dư, tách giao dịch tự động, tạo số đẹp.</li>
+                <li>Đăng ký vay tín chấp/tín dụng nhanh: hạn mức vay tới <span class="highlight">2 tỷ tín chấp</span> hoặc <span class="highlight">20 tỷ thế chấp</span> dựa trên số dư.</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Thông tin liên hệ -->
+    <div class="section bg-white">
+        <h2 class="header text-3xl mb-6">5. Thông tin liên hệ</h2>
+        <div class="card">
+            <p class="content"><strong>Hotline:</strong> 1900 6083 (cá nhân), 1800 6260 (doanh nghiệp) – miễn phí.</p>
+            <p class="content"><strong>Email CSKH:</strong> <a href="mailto:cskhcanhan@msb.com.vn" class="text-orange-500">cskhcanhan@msb.com.vn</a></p>
+            <p class="content"><strong>Đăng ký:</strong> Qua app MSB mBank hoặc tại website MSB mục "Tài khoản M Pro".</p>
+            <p class="content"><strong>Chi nhánh/ATM:</strong> Hơn <span class="highlight">260 điểm giao dịch</span> trên toàn quốc.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-4">
+        <p>&copy; 2025 Ngân hàng TMCP Hàng Hải Việt Nam (MSB). All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            const speed = scrolled * 0.5;
+            parallax.style.transform = `translateY(${speed}px)`;
+        });
+
+        // Add floating animation delay
+        document.querySelectorAll('.floating').forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.5}s`;
+        });
+    </script>
+</body>
+</html>
